@@ -53,3 +53,20 @@ class Jugador(object):
     def mostrar_mano(self):
         for e in self.mano:
             e.mostrar_ficha()
+
+
+class Mesa(Jugador):
+
+    def __init__(self, name):
+        super(Mesa, self).__init__(name)
+        self.juego = {}
+
+    def make_game(self, caja):
+        self.juego[self.name] = []
+        self.tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja)
+
+        for e in self.mano:
+            self.juego[self.name].append([e.value1, e.value2])
+
+    def mostrar_juego(self):
+        return self.juego[self.name]
