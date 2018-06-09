@@ -2,6 +2,7 @@ import random
 
 
 class Ficha(object):
+    """class que tiene una ficha de domino con sus dos valores con un method para mostrar esos valores"""
 
     def __init__(self, value1, value2):
         self.value1 = value1
@@ -15,9 +16,13 @@ class Ficha(object):
 
 
 class Caja(object):
+    """class de una caja de domino con una list que se usa como caja para guardar las fichas con los methods:
+    crear(): para poner las 28 ficahs en la caja;
+    mostrar(): muestra todas las fichas de la caja;
+    barajar(): baraja todas las fichas de la caja aleatoriamente;
+    tomar(): toma una ficha de la caja(ya sea barajada o no). """
 
     def __init__(self):
-
         self.caja = []
 
     def crear(self):
@@ -41,6 +46,8 @@ class Caja(object):
 
 
 class Jugador(object):
+    """class jugador
+        contiene el nombre y la mano del jugador con el method tomar() el cual toma una ficha de la caja y mostrar mano el cual muestra la mano del jugador con el method mostrar_Ficha de la class Ficha"""
 
     def __init__(self, name):
         self.name = name
@@ -56,6 +63,9 @@ class Jugador(object):
 
 
 class Mesa(Jugador):
+    """class mesa que hereda los atributos de la class jugador y sus methods;
+        make_game() method: crea una variable en el diccionario self.juego que contiene las fichas y el nombre del jugador(toma el method tomar() de la class Jugador.
+        method mostrar_juego(): muestra la mano del jugador."""
 
     def __init__(self, name):
         super(Mesa, self).__init__(name)
@@ -73,6 +83,12 @@ class Mesa(Jugador):
 
 
 class Gameplay(object):
+    """class Gameplay que contiene 2 static methods y un class methods;
+        staticmethod revisar_si_jugador_esta_bloqueado(): revisa si el jugador tiene fichas que jugar;
+
+        staticmethod revisar_si_juego_esta_bloqueado(): revisa si ninguno de los 4 jugadores puede poner una ficha(lista con dos valores) en Gameplay.game;
+
+        classmethod poner_ficha(): si el jugador tiene una ficha que pueda ir al principio o al final de Gameplay.game(simulando una mesa de domino) la pone y si no return False si la pone esa ficha se le hace pop a la mano del jugador."""
 
     game = []
 
