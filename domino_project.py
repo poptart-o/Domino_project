@@ -196,3 +196,81 @@ class Gameplay(object):
             else:
                 return cls.poner_ficha(player, player_game_mod, player_game[1:], fichas_jugables)
 
+dominos = Caja()  # crea un object caja para guardar las fichas.
+dominos.crear()  # crea la caja con los 28 dominos.
+dominos.barajar()  # baraja las 28 fichas aleatoriamente para que posteriormente los jugadores eligan las fichas aleatoriamente.
+# dominos.mostrar()  # muestra las 28 fichas.
+
+reyes = Mesa('reyes')  # crea un object con el nombre del jugador.
+osting = Mesa('osting')  # crea un object con el nombre del jugador.
+martines = Mesa('martines')  # crea un object con el nombre del jugador.
+rodriguez = Mesa('rodriguez')  # crea un object con el nombre del jugador.
+
+reyes.make_game(dominos)  # el jugador toma fichas de la caja de dominos para completar una mano de 7 fichas.
+osting.make_game(dominos)  # el jugador toma fichas de la caja de dominos para completar una mano de 7 fichas.
+martines.make_game(dominos)  # el jugador toma fichas de la caja de dominos para completar una mano de 7 fichas.
+rodriguez.make_game(dominos)  # el jugador toma fichas de la caja de dominos para completar una mano de 7 fichas.
+
+
+reyes_game = reyes.mostrar_juego()  # crea uan variable que contiene el juego del jugador.
+osting_game = osting.mostrar_juego()  # crea uan variable que contiene el juego del jugador.
+martines_game = martines.mostrar_juego()  # crea uan variable que contiene el juego del jugador.
+rodriguez_game = rodriguez.mostrar_juego()  # crea uan variable que contiene el juego del jugador.
+
+
+player1 = Gameplay('reyes', reyes_game)  # crea un object con el nombre del jugador y sus fichas para jugar.
+player2 = Gameplay('osting', osting_game)  # crea un object con el nombre del jugador y sus fichas para jugar.
+player3 = Gameplay('martines', martines_game)  # crea un object con el nombre del jugador y sus fichas para jugar.
+player4 = Gameplay('rodriguez', rodriguez_game)  # crea un object con el nombre del jugador y sus fichas para jugar.
+
+mano_de_player_1 = player1.mano  # crea una variable con la mano del jugador para usarse en el juego.
+mano_de_player_2 = player2.mano  # crea una variable con la mano del jugador para usarse en el juego.
+mano_de_player_3 = player3.mano  # crea una variable con la mano del jugador para usarse en el juego.
+mano_de_player_4 = player4.mano  # crea una variable con la mano del jugador para usarse en el juego.
+
+
+for juego in range(29):
+    print 'turn', juego
+    Gameplay.poner_ficha(player1, player1.mano, mano_de_player_1)
+
+    if len(player1.mano) == 0:
+        break
+
+    if Gameplay.revisar_si_juego_esta_bloqueado(player1.mano, player2.mano, player3.mano, player4.mano) == True:
+        print player1.name, "ha bloqueado el juego"
+        break
+
+    Gameplay.poner_ficha(player2, player2.mano, mano_de_player_2)
+
+    if len(player2.mano) == 0:
+        break
+
+    if Gameplay.revisar_si_juego_esta_bloqueado(player1.mano, player2.mano, player3.mano, player4.mano) == True:
+        print player2.name, "ha bloqueado el juego"
+        break
+
+    Gameplay.poner_ficha(player3, player3.mano, mano_de_player_3)
+
+    if len(player3.mano) == 0:
+        break
+
+    if Gameplay.revisar_si_juego_esta_bloqueado(player1.mano, player2.mano, player3.mano, player4.mano) == True:
+        print player3.name, "ha bloqueado el juego"
+        break
+
+    Gameplay.poner_ficha(player4, player4.mano, mano_de_player_4)
+
+    if len(player4.mano) == 0:
+        break
+
+    if Gameplay.revisar_si_juego_esta_bloqueado(player1.mano, player2.mano, player3.mano, player4.mano) == True:
+        print player4.name, "ha bloqueado el juego"
+        break
+
+
+print Gameplay.game
+print
+print player1.mano
+print player2.mano
+print player3.mano
+print player4.mano
