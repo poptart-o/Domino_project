@@ -38,3 +38,18 @@ class Caja(object):
 
     def tomar_ficha(self):
         return self.caja.pop()
+
+
+class Jugador(object):
+
+    def __init__(self, name):
+        self.name = name
+        self.mano = []
+
+    def tomar(self, caja):
+        self.mano.append(caja.tomar_ficha())
+        return self
+
+    def mostrar_mano(self):
+        for e in self.mano:
+            e.mostrar_ficha()
