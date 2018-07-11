@@ -37,9 +37,9 @@ class Caja(object):
             print [ficha.value1, ficha.value2]
 
     def barajar(self):
-        for i in range(1, len(self.caja) - 1, -1):
-            r = random.randint(0, i)
-            self.caja[i], self.caja[r] = self.caja[r], self.caja[i]
+        for number in range(1, len(self.caja) - 1, -1):
+            r = random.randint(0, number)
+            self.caja[number], self.caja[r] = self.caja[r], self.caja[number]
 
     def tomar_ficha(self):
         return self.caja.pop()
@@ -58,8 +58,8 @@ class Jugador(object):
         return self
 
     def mostrar_mano(self):
-        for e in self.mano:
-            e.mostrar_ficha()
+        for ficha in self.mano:
+            ficha.mostrar_ficha()
 
 
 class Mesa(Jugador):
@@ -75,8 +75,8 @@ class Mesa(Jugador):
         self.juego[self.name] = []
         self.tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja).tomar(caja)
 
-        for e in self.mano:
-            self.juego[self.name].append([e.value1, e.value2])
+        for ficha in self.mano:
+            self.juego[self.name].append([ficha.value1, ficha.value2])
 
     def mostrar_juego(self):
         return self.juego[self.name]
@@ -211,6 +211,7 @@ class Gameplay(object):
                 return cls.poner_ficha(player, player_game_mod, player_game[1:], fichas_jugables)
             else:
                 return cls.poner_ficha(player, player_game_mod, player_game[1:], fichas_jugables)
+
 
 dominos = Caja()  # crea un object caja para guardar las fichas.
 dominos.crear()  # crea la caja con los 28 dominos.
