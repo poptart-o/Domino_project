@@ -46,10 +46,9 @@ class Caja(object):
         if len(self.caja) == 0:
 
             print 'No hay fichas en la caja'
-
-        for ficha in self.caja:
-
-            print [ficha.value1, ficha.value2]
+        else:
+            for ficha in self.caja:
+                print [ficha.value1, ficha.value2]
 
     def barajar(self):
 
