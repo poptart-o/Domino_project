@@ -231,7 +231,6 @@ class Gameplay(object):
 
                         print "{} pone {} en la mesa".format(player.name, player_game[0])
 
-
                         player_game_mod.pop(player_game_mod.index(player_game[0]))
 
                         if len(player_game) == 0:
@@ -261,7 +260,6 @@ class Gameplay(object):
                             cls.game[0:0] = [player_game[0]]
 
                             print "{} pone {} en la mesa".format(player.name, player_game[0])
-
 
                             player_game_mod.pop(player_game_mod.index(player_game[0]))
 
@@ -428,6 +426,9 @@ for juego in range(29):
         print player4.name, "ha bloqueado el juego"
 
         break
+    print
+    print "Game state in turn " + str(juego), Gameplay.game
+    print
 
 
 print Gameplay.game
